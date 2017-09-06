@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tab">
+        <item>牛牛顶部1</item>
+        <item>牛牛顶部2</item>
+        <item>牛牛顶部3</item>
+        <item>牛牛顶部4</item>
+        <item>牛牛顶部5</item>
+        <item>牛牛顶部6</item>
+    </string-array>
+</resources>

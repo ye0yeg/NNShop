@@ -1,5 +1,7 @@
 package com.niuniushop.sjhj.nnshop.ui.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -20,7 +22,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import dalvik.system.InMemoryDexClassLoader;
 
 /**
  * Created by Administrator on 2017/9/5.
@@ -71,8 +72,9 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         LinearLayout.LayoutParams mParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
-        if(!JUtils.isNetWorkAvilable()){
-            for (int i = 0; i<  Config.pics.length ; i++){
+        if (!JUtils.isNetWorkAvilable()) {
+            //无网络的情况
+            for (int i = 0; i < Config.pics.length; i++) {
                 length = Config.pics.length;
                 SimpleDraweeView iv = new SimpleDraweeView(this);
                 iv.setLayoutParams(mParams);
@@ -81,9 +83,20 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                 iv.setImageResource(Config.pics[i]);
                 views.add(iv);
             }
+            //有网络的情况
+        }else{
+            for (int i = 0 ; i <Config.pricUrls.length;i++){
+                length = Config.pricUrls.length;
+                SimpleDraweeView iv  = new SimpleDraweeView(this);
+                iv.setLayoutParams(mParams);
+                iv.setScaleType(ImageView.ScaleType.FIT_XY);
+                //加载图片资源
+                iv.setImageURI(Uri.parse(Config.pricUrls[i]));
+                views.add(iv);
+            }
         }
         viewPager.setAdapter(adapter);
-//        viewPager.addOnPageChangeListener(new OnPageChangeListener());
+        viewPager.addOnPageChangeListener(new OnPageChangeListener());
         initPoint();
     }
 
@@ -92,12 +105,11 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     * 初始化原点
     * */
     private void initPoint() {
-        //
+        //设定一个布局的参数
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.point_layout);
         points = new ImageView[length];
-
         //初始化
-        for(int i = 0 ; i<length ;i++){
+        for (int i = 0; i < length; i++) {
             points[i] = (ImageView) linearLayout.getChildAt(i);
             points[i].setEnabled(true);
             points[i].setOnClickListener(this);
@@ -107,7 +119,6 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         currentIndex = 0;
         //设置为白色即选中的状态
         points[currentIndex].setEnabled(false);
-
     }
 
     @Override
@@ -118,7 +129,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     /* 监听滚动事件*/
-    private final class OnPageChangeListener implements ViewPager.OnPageChangeListener{
+    private final class OnPageChangeListener implements ViewPager.OnPageChangeListener {
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -127,23 +138,38 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
         @Override
         public void onPageSelected(int position) {
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int position) {
             //在最后一个的时候显示有可以点击按钮的页面。
             setCurrentDot(position);
-            if(position == length -1){
+            if (position == length - 1) {
                 goLayout.setVisibility(View.VISIBLE);
                 goComing.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        Intent intent = new Intent();
+                        intent.setClass(WelcomeActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 });
-
+                goLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.putExtra("startUp", "welcome");
+                        //下面这边应该是要转到LoginActivity
+                        intent.setClass(WelcomeActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+            } else {
+                goLayout.setVisibility(View.GONE);
             }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int position) {
+
         }
     }
 
