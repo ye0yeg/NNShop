@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.niuniushop.sjhj.nnshop.R;
 import com.niuniushop.sjhj.nnshop.ui.fragment.CategorizeFragment;
 import com.niuniushop.sjhj.nnshop.ui.fragment.IndexFragment;
+import com.niuniushop.sjhj.nnshop.ui.fragment.RecommendFragment;
 import com.niuniushop.sjhj.nnshop.ui.fragment.ShoppingFragment;
 import com.niuniushop.sjhj.nnshop.ui.fragment.UserFragment;
 
@@ -45,7 +46,7 @@ public class MyTabFragmentAdapter extends FragmentStatePagerAdapter {
         Bundle bundle = new Bundle();
         switch (position) {
             case 0:
-                fragment = new IndexFragment();
+                fragment = new RecommendFragment();
                 break;
             case 1:
                 fragment = new CategorizeFragment();

@@ -271,7 +271,8 @@ public class MainActivity extends BaseThemeSettingActivity {
     private void addFragment(int index) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (index == 0) {
-            fragmentTransaction.add(MyTabFragmentAdapter.getFragment(index), "IndexFragment");
+            fragmentTransaction.add(MyTabFragmentAdapter.getFragment(index), "RecommendFragment");
+
         }
     }
 
