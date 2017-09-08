@@ -6,5 +6,6 @@
     <string name="user_desc">描述</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="view_net_error"> 暂无网络连接</string>
 
 </resources>

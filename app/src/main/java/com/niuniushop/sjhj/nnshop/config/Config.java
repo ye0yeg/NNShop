@@ -48,7 +48,14 @@ public final class Config {
      * 底部导航菜单点击事件对应的fragment
      */
     public static final Class[] tabClass = {
-            IndexFragment.class, CategorizeFragment.class, ShoppingFragment.class, UserFragment.class
+            ShoppingFragment.class, CategorizeFragment.class, ShoppingFragment.class, UserFragment.class
+    };
+
+    /**
+     * 推荐列tip导航栏文本
+     */
+    public static final String[] recommdendTips = {
+            "牛牛菜单1", "牛牛菜单2", "牛牛菜单3", "牛牛菜单4"
     };
 
 }

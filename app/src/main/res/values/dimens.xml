@@ -35,6 +35,7 @@
     <dimen name="progressSize">120dip</dimen>
 
     <dimen name="shape">2dp</dimen>
+    <dimen name="xxx_card_margin">0dp</dimen>
 
 
 </resources>

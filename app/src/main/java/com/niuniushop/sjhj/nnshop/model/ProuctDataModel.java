@@ -4,18 +4,16 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by Administrator on 2017/9/6.
+ * Created by Administrator on 2017/9/8.
  */
 
-/*
-* 作为一个货物
-* */
-class ProductDataModel implements Parcelable {
+public class ProuctDataModel implements Parcelable{
+
     private int id;
 
     private String name;
 
-    private Float price;
+    private float price;
 
     private int type;
 
@@ -26,6 +24,46 @@ class ProductDataModel implements Parcelable {
     private int color;
 
     private int storage;
+
+    protected ProuctDataModel(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        price = in.readFloat();
+        type = in.readInt();
+        img = in.readString();
+        carrieroperator = in.readInt();
+        color = in.readInt();
+        storage = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeFloat(price);
+        dest.writeInt(type);
+        dest.writeString(img);
+        dest.writeInt(carrieroperator);
+        dest.writeInt(color);
+        dest.writeInt(storage);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Parcelable.Creator<ProuctDataModel> CREATOR = new Parcelable.Creator<ProuctDataModel>() {
+        @Override
+        public ProuctDataModel createFromParcel(Parcel in) {
+            return new ProuctDataModel(in);
+        }
+
+        @Override
+        public ProuctDataModel[] newArray(int size) {
+            return new ProuctDataModel[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -43,11 +81,11 @@ class ProductDataModel implements Parcelable {
         this.name = name;
     }
 
-    public Float getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -89,45 +127,5 @@ class ProductDataModel implements Parcelable {
 
     public void setStorage(int storage) {
         this.storage = storage;
-    }
-
-
-    protected ProductDataModel(Parcel in) {
-        id = in.readInt();
-        name = in.readString();
-        type = in.readInt();
-        img = in.readString();
-        carrieroperator = in.readInt();
-        color = in.readInt();
-        storage = in.readInt();
-    }
-
-    public static final Creator<ProductDataModel> CREATOR = new Creator<ProductDataModel>() {
-        @Override
-        public ProductDataModel createFromParcel(Parcel in) {
-            return new ProductDataModel(in);
-        }
-
-        @Override
-        public ProductDataModel[] newArray(int size) {
-            return new ProductDataModel[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int i) {
-        dest.writeInt(id);
-        dest.writeString(name);
-        dest.writeFloat(price);
-        dest.writeInt(type);
-        dest.writeString(img);
-        dest.writeInt(carrieroperator);
-        dest.writeInt(color);
-        dest.writeInt(storage);
     }
 }
