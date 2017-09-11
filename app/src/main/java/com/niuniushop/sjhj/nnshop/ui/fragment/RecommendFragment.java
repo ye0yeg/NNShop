@@ -69,7 +69,7 @@ public class RecommendFragment extends Fragment implements SwipeRefreshLayout.On
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mRecyclerView.setAdapterWithProgress(mRecommendAdapter);
 
-        mRecommendAdapter.addHeader(new RollViewPagerItemView(getActivity()));
+        mRecommendAdapter.addHeader(new RollViewPagerItemView(mRecyclerView.getSwipeToRefresh()));
         mRecyclerView.setRefreshListener(this);
 
         mRecommendAdapter.clear();
