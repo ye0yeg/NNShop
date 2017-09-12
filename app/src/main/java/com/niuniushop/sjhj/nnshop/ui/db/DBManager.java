@@ -81,14 +81,16 @@ public class DBManager {
         List<RecommendContentModel> listDatas = new ArrayList<RecommendContentModel>();
         Cursor cursor = db.rawQuery("select * from " + MySql.ProductTable + " order by productType asc", null);
         if (cursor != null && cursor.moveToFirst()) {
-
+            //4
             for (int i = 0; i < Config.recommdendTips.length; i++) {
                 RecommendContentModel recommendTip = new RecommendContentModel();
+                //设置为true
                 recommendTip.setJudgeType(true);
                 recommendTip.setTip(Config.recommdendTips[i]);
                 listDatas.add(recommendTip);
                 for (int j = 0; j < 4; j++) {
                     int type = cursor.getInt(cursor.getColumnIndex("productType"));
+                    //如果i 为商品
                     if (i == type) {
                         RecommendContentModel recommendContent = new RecommendContentModel();
                         recommendContent.setPid(cursor.getInt(cursor.getColumnIndex("pid")));

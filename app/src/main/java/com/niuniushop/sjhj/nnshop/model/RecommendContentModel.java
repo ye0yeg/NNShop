@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by Administrator on 2017/9/8.
  */
 
-public class RecommendContentModel implements Parcelable{
+public class RecommendContentModel implements Parcelable {
 
     //推荐主页中的数据
     //类型
@@ -18,15 +18,15 @@ public class RecommendContentModel implements Parcelable{
 
     //标题
     private String title;
-//提示
+    //提示
     private String tip;
-//是否为列表
+    //是否为列表
     private boolean isListType;
-//图片url
+    //图片url
     private String imageUrl;
-//价
+    //价
     private float price;
-//是否类型
+    //是否类型
     private boolean judgeType;
 
     //颜色选择

@@ -1,5 +1,6 @@
 package com.niuniushop.sjhj.nnshop.http;
 
+import com.niuniushop.sjhj.nnshop.model.BannerDataModel;
 import com.niuniushop.sjhj.nnshop.model.ProuctDataModel;
 
 import java.util.List;
@@ -20,5 +21,13 @@ public interface HttpInterface {
     @GET("/AppShopService/index.php/Home/Index/{action}")
     Observable<List<ProuctDataModel>> getProducts(@Path("action")String action);
 
+    /**
+     * 获取推荐轮播图片
+     *
+     * @param action
+     * @return
+     */
+    @GET("/AppShopService/index.php/Home/Index/{action}")
+    Observable<List<BannerDataModel>> getBanners(@Path("action") String action);
 
 }

@@ -23,15 +23,13 @@ import java.util.List;
 public class ImageLoopAdapter extends DynamicPagerAdapter {
 
     private List<BannerDataModel> mBannerDataModelList;
-    private Context mContext;
 
 
     public ImageLoopAdapter(List<BannerDataModel> bannerDataModels) {
         this.mBannerDataModelList = bannerDataModels;
     }
 
-    public ImageLoopAdapter(Context context) {
-        mContext = context;
+    public ImageLoopAdapter( ) {
     }
 
     ;
@@ -43,7 +41,7 @@ public class ImageLoopAdapter extends DynamicPagerAdapter {
         simpleDraweeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "轮播图：" + position, Toast.LENGTH_SHORT).show();
+
             }
         });
         simpleDraweeView.setImageURI(Uri.parse(mBannerDataModelList.get(position).getImageUrl()));

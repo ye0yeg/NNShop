@@ -9,6 +9,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.niuniushop.sjhj.nnshop.model.RecommendContentModel;
 import com.niuniushop.sjhj.nnshop.model.RecommendModel;
 import com.niuniushop.sjhj.nnshop.ui.activity.MainActivity;
+import com.niuniushop.sjhj.nnshop.ui.viewholder.MainMenuViewHolder;
 import com.niuniushop.sjhj.nnshop.ui.viewholder.RecommendContentViewHolder;
 import com.niuniushop.sjhj.nnshop.ui.viewholder.RecommendListViewHolder;
 import com.niuniushop.sjhj.nnshop.ui.viewholder.RecommendTipVewHolder;
@@ -30,6 +31,8 @@ public class RecommendAdapter extends RecyclerArrayAdapter<RecommendContentModel
     private int content = 1;
     private int list = 2;
 
+    private int TYPE_HEAD_TWO = 3;
+
     private FloatingActionButton fab;
 
     public RecommendAdapter(Context context) {
@@ -49,8 +52,9 @@ public class RecommendAdapter extends RecyclerArrayAdapter<RecommendContentModel
             return new RecommendContentViewHolder(parent);
         } else if (viewType == list) {
 
-            return new RecommendTipVewHolder(parent);
-//            return new RecommendListViewHolder(parent);
+            return new RecommendListViewHolder(parent);
+        } else if(viewType == TYPE_HEAD_TWO){
+            return new MainMenuViewHolder(parent);
         }
         return null;
     }
@@ -65,12 +69,11 @@ public class RecommendAdapter extends RecyclerArrayAdapter<RecommendContentModel
         if (getItem(position).isJudgeType()) {
             return tip;
         } else if (getItem(position).isListType()) {
-            return list;
+            return TYPE_HEAD_TWO;
         } else {
             return content;
         }
     }
-
 
 
     public class TipSpanSizeLookUp extends GridSpanSizeLookup {
@@ -89,7 +92,6 @@ public class RecommendAdapter extends RecyclerArrayAdapter<RecommendContentModel
                     //该tip item 占2
                     return 2;
                 } else {
-
                     return 1;
                 }
             }

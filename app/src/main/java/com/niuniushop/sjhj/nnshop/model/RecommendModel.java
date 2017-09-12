@@ -36,6 +36,13 @@ public class RecommendModel {
                 .subscribe(subscriber);
     }
 
+    public static void getRecommendBanners(Subscriber<List<BannerDataModel>> subscriber) {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        RetrofitHttp.getRetrofit(builder.build()).getBanners("getBanners")
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
 
     /**
      * 返回一个被观察者对象
@@ -52,4 +59,7 @@ public class RecommendModel {
             }
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
+
+
+
 }
